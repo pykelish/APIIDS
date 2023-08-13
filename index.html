@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        
+        canvas{
+            background-color: gray;
+
+        } 
+        
+    </style>
+
+</head>
+<body>
+
+    <canvas id="myCanvas"></canvas>
+    <script>
+        var canvas = document.getElementById('myCanvas');
+        var contexto = canvas.getContext('2d'); //uste me dijo que era con mayusculas y no, y buscando poke no jalaba profe :C
+        
+        contexto.fillStyle = "red";
+        contexto.fillRect(10,10,55,50);
+
+        contexto.fillStyle = "blue";
+        contexto.fillRect(45,45,55,50);
+
+        contexto.fillStyle = "aqua";
+        contexto.fillRect(85,85,55,50);
+
+
+    </script>
+
+    
+</body>
+</html>
