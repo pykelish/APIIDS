@@ -7,12 +7,13 @@
     <title>Document</title>
 
     <style>
-        
+
         canvas{
             background-color: gray;
+            
 
         } 
-        
+
     </style>
 
 </head>
@@ -22,7 +23,7 @@
     <script>
         var canvas = document.getElementById('myCanvas');
         var contexto = canvas.getContext('2d'); //uste me dijo que era con mayusculas y no, y buscando poke no jalaba profe :C
-        
+
         contexto.fillStyle = "red";
         contexto.fillRect(10,10,55,50);
 
@@ -32,9 +33,39 @@
         contexto.fillStyle = "aqua";
         contexto.fillRect(85,85,55,50);
 
+        //triangulo nuevo
+        contexto.beginPath();
+        contexto.moveTo(185,10);//izquierda es para hasta donde en lados y derecha que tan abajo o arriba
+        contexto.lineTo(230,65);
+        contexto.lineTo(125,65);
+        contexto.fill();
+        contexto.closePath();
+
+        contexto.strokeStyle = "red";
+        contexto.beginPath();
+        contexto.moveTo(230,65)
+        contexto.lineTo(290,120);
+        contexto.stroke();
+        contexto.closePath();
+
+
+        contexto.beginPath();
+        contexto.strokeStyle = "orange";
+        contexto.arc(170,110, 20, 0, 2*Math.PI);//primeros dos es posicion en x/y, el 3ro el radio, el 4to es el angulo en el que inicia y el 5to el angulo en el que acaba
+        contexto.stroke();
+        contexto.closePath();
+
+        contexto.beginPath();
+        contexto.fillStyle = "green";
+        contexto.arc(215, 110, 20, 0, 2*Math.PI);//primeros dos es posicion en x/y, el 3ro el radio, el 4to es el angulo en el que inicia y el 5to el angulo en el que acaba
+        contexto.fill();
+        contexto.stroke();
+        contexto.closePath();
+
+
 
     </script>
 
-    
+
 </body>
 </html>
