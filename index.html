@@ -115,7 +115,7 @@
                     contexto.fill();
                     contexto.stroke();
 
-                } else if (!figura){
+                } else{
 
                     contexto.fillRect(event.layerX -25, event.layerY - 25, 50, 50);
                     contexto.fill();
@@ -131,8 +131,6 @@
                 color = random_rgba();
                 contexto.fillStyle = color;
 
-                figura = !figura;
-
             })
 
 
@@ -142,9 +140,11 @@
             }
 
 
-            canva.addEventListener("mouseout", (event)=> {
+            canvas.addEventListener("mouseout", (event)=> {
 
-                
+                figura = !figura;
+
+                console.log(figura);
 
 
             })
