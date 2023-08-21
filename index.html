@@ -30,6 +30,9 @@
         window.onload = () => {
             const canvas = document.getElementById('myCanvas');
             const contexto = canvas.getContext('2d'); //uste me dijo que era con mayusculas y no, y buscando poke no jalaba profe :C
+            var color = "rgba(13,242,23,0,0.5)";
+            var figura = true;
+
             /*
             <img src="cayde6.png" style="display: none;" id="imagen" width="100" height="100">
 
@@ -106,7 +109,6 @@
                 console.log(event);
 
                 contexto.beginPath();
-                contexto.fillStyle = "green";
                 contexto.arc(event.layerX, event.layerY, 20, 0, 2 * Math.PI);//primeros dos es posicion en x/y, el 3ro el radio, el 4to es el angulo en el que inicia y el 5to el angulo en el que acaba
                 contexto.fill();
                 contexto.stroke();
@@ -115,7 +117,20 @@
 
             })
 
+            addEventListener("mouseover", (event) => {
 
+                console.log("mouseover");
+
+                color = random_rgba();
+                contexto.fillStyle = color;
+
+            })
+
+
+            function random_rgba() {
+                var o = Math.round, r = Math.random, s = 255;
+                return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + r().toFixed(1) + ')';
+            }
 
         }
 
