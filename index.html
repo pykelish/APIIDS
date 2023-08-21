@@ -115,9 +115,9 @@
                     contexto.fill();
                     contexto.stroke();
 
-                } else{
+                } else {
 
-                    contexto.fillRect(event.layerX -25, event.layerY - 25, 50, 50);
+                    contexto.fillRect(event.layerX - 25, event.layerY - 25, 50, 50);
                     contexto.fill();
 
                 }
@@ -140,7 +140,7 @@
             }
 
 
-            canvas.addEventListener("mouseout", (event)=> {
+            canvas.addEventListener("mouseout", (event) => {
 
                 figura = !figura;
 
@@ -148,10 +148,20 @@
 
 
             })
+
+            canvas.addEventListener("mousemove", (event) => {
+
+
+                contexto.beginPath();
+                contexto.fillStyle = "green";
+                contexto.arc(event.clientX, event.clientY, 20, 0, 2 * Math.PI);//primeros dos es posicion en x/y, el 3ro el radio, el 4to es el angulo en el que inicia y el 5to el angulo en el que acaba
+                contexto.fill();
+
+            })
         }
 
 
-        
+
 
     </script>
 
