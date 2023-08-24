@@ -64,11 +64,15 @@
 
 
                 }
+                
                 repaint();
 
             })
 
             function repaint() {
+                contexto.fillStyle= "rgb(221, 161, 133)";
+                contexto.fillRect(0, 0, 500, 500);
+
                 contexto.fillStyle = random_rgba();
                 contexto.fillRect(x, y, 50, 50);
                 contexto.strokeRect(x, y, 50, 50);
