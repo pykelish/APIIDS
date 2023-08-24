@@ -9,7 +9,7 @@
 
     <style>
         canvas {
-            background-color: white;
+            background-color: rgb(221, 161, 133);
             border: 1px solid;
 
 
@@ -33,11 +33,34 @@
             var color = "rgba(13,242,23,0,0.5)";
             var figura = true;
             let press = false;
+            var x = 225;
+            var y = 225;
 
+
+            document.addEventListener("keydown", (event) => {
+                console.log(event);
+                x = Math.floor(Math.random() * 450);
+                y = Math.floor(Math.random() * 450);
+                contexto.fillStyle = random_rgba();
+                repaint();
+
+            })
+
+            function repaint(){
+                contexto.fillRect(x, y, 50, 50);
+                contexto.strokeRect(x, y, 50, 50);
+
+
+            }
 
             
+            function random_rgba() {
+                var o = Math.round, r = Math.random, s = 255;
+                return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + r().toFixed(1) + ')';
+            }
 
-            canvas.addEventListener("mouseover", (event) => {
+
+            /*canvas.addEventListener("mouseover", (event) => {
 
                 console.log("mouseover");
 
@@ -47,10 +70,7 @@
             })
 
 
-            function random_rgba() {
-                var o = Math.round, r = Math.random, s = 255;
-                return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + r().toFixed(1) + ')';
-            }
+            
 
 
             canvas.addEventListener("mouseout", (event) => {
