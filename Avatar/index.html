@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas {
+            background-color: rgba(71,199,160,255);
+            border: 1px solid;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas width="700" height="800" id="myCanvas"></canvas>
+    <script>
+        //cuando cargues lo de arriba, vas a hacer esto de aca abajito
+        window.onload = () => {
+            const canvas = document.getElementById('myCanvas');
+            const contexto = canvas.getContext('2d'); //uste me dijo que era con mayusculas y no, y buscando poke no jalaba profe :C
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(63,54,57,255)";
+            contexto.fillRect(250, 70, 60, 50);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(230, 50, 100, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(230, 70, 20, 46);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(310, 70, 20, 46);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(230, 116, 100, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(230, 116, 100, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(250, 136, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(290, 136, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(60,76,33,255)";
+            contexto.fillRect(270, 136, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(210, 156, 140, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(190, 176, 40, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(330, 176, 40, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(190, 176, 20, 120);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(350, 176, 20, 120);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(210, 296, 140, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(170, 296, 20, 80);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(150, 316, 60, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(210, 336, 140, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(190, 376, 160, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(370, 296, 20, 80);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(350, 356, 20, 160);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(190, 396, 20, 120);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(170, 516, 20, 60);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(130, 336, 20, 220);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(150, 556, 260, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(0,0,0,255)";
+            contexto.fillRect(130, 556, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(390, 316, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(410, 336, 20, 220);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(370, 516, 20, 40);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(170, 576, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(190, 596, 20, 40);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(190, 596, 20, 40);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(170, 636, 20, 20);
+            contexto.closePath();
+            
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(190, 656, 40, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(230, 596, 20, 60);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(250, 576, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(370, 576, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(350, 596, 20, 40);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(370, 636, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(330, 656, 40, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(370, 576, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(310, 596, 20, 60);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(290, 576, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(290, 576, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(230, 516, 20, 40);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(250, 436, 20, 80);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(310, 516, 20, 40);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(290, 456, 20, 60);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(230, 416, 40, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(210, 396, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(250, 396, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(290, 396, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(310, 416, 20, 40);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(30,30,30,255)";
+            contexto.fillRect(270, 436, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(63,54,57,255)";
+            contexto.fillRect(230, 176, 100, 40);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(63,54,57,255)";
+            contexto.fillRect(210, 196, 20, 40);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(63,54,57,255)";
+            contexto.fillRect(330, 196, 20, 40);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(200,132,116,255)";
+            contexto.fillRect(230, 216, 100, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(200,132,116,255)";
+            contexto.fillRect(210, 236, 140, 60);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(52,43,41,255)";
+            contexto.fillRect(230, 236, 20, 40);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(52,43,41,255)";
+            contexto.fillRect(310, 236, 20, 40);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(196,127,80,255)";
+            contexto.fillRect(330, 396, 20, 120);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(196,127,80,255)";
+            contexto.fillRect(330, 516, 40, 40);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(234,153,98,255)";
+            contexto.fillRect(310, 396, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(234,153,98,255)";
+            contexto.fillRect(310, 456, 20, 60);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(234,153,98,255)";
+            contexto.fillRect(310, 396, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(234,153,98,255)";
+            contexto.fillRect(210, 416, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(234,153,98,255)";
+            contexto.fillRect(210, 436, 40, 80);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(234,153,98,255)";
+            contexto.fillRect(190, 516, 40, 40);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(234,153,98,255)";
+            contexto.fillRect(190, 516, 40, 40);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(231,189,149,255)";
+            contexto.fillRect(230, 396, 20, 20);
+            contexto.closePath();
+            
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(158,56,44,255)";
+            contexto.fillRect(270, 396, 20, 40);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(127,49,40,255)";
+            contexto.fillRect(290, 416, 20, 40);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(83,78,85,255)";
+            contexto.fillRect(270, 456, 20, 100);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(83,78,85,255)";
+            contexto.fillRect(250, 516, 20, 40);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(57,53,58,255)";
+            contexto.fillRect(290, 516, 20, 40);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(93,60,55,255)";
+            contexto.fillRect(150, 336, 20, 60);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(68,44,40,255)";
+            contexto.fillRect(170, 376, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(158,56,44,255)";
+            contexto.fillRect(150, 396, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(127,49,40,255)";
+            contexto.fillRect(170, 396, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(231,189,149,255)";
+            contexto.fillRect(150, 416, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(178,145,115,255)";
+            contexto.fillRect(170, 416, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(93,60,55,255)";
+            contexto.fillRect(150, 436, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(68,44,40,255)";
+            contexto.fillRect(170, 436, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(158,56,44,255)";
+            contexto.fillRect(150, 456, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(68,44,40,255)";
+            contexto.fillRect(170, 456, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(68,44,40,255)";
+            contexto.fillRect(150, 476, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(127,49,40,255)";
+            contexto.fillRect(170, 476, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(158,56,44,255)";
+            contexto.fillRect(150, 496, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(68,44,40,255)";
+            contexto.fillRect(170, 496, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(200,132,116,255)";
+            contexto.fillRect(150, 516, 20, 40);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(68,44,40,255)";
+            contexto.fillRect(390, 336, 20, 60);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(92,61,58,255)";
+            contexto.fillRect(370, 376, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(231,189,149,255)";
+            contexto.fillRect(370, 396, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(186,149,115,255)";
+            contexto.fillRect(390, 396, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(92,61,58,255)";
+            contexto.fillRect(370, 416, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(68,44,40,255)";
+            contexto.fillRect(390, 416, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(231,189,149,255)";
+            contexto.fillRect(370, 436, 20, 60);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(186,149,115,255)";
+            contexto.fillRect(390, 436, 20, 60);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(250,232,166,255)";
+            contexto.fillRect(370, 496, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(202,184,120,255)";
+            contexto.fillRect(390, 496, 20, 20);
+            contexto.closePath();
+            
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(249,229,213,255)";
+            contexto.fillRect(390, 516, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(218,198,183,255)";
+            contexto.fillRect(390, 536, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(231,189,149,255)";
+            contexto.fillRect(190, 296, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(231,189,149,255)";
+            contexto.fillRect(190, 336, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(231,189,149,255)";
+            contexto.fillRect(190, 356, 100, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(178,145,115,255)";
+            contexto.fillRect(290, 356, 60, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(178,145,115,255)";
+            contexto.fillRect(350, 296, 20, 60);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(178,145,115,255)";
+            contexto.fillRect(330, 316, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(231,189,149,255)";
+            contexto.fillRect(210, 316, 120, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(33,43,76,255)";
+            contexto.fillRect(190, 576, 60, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(33,43,76,255)";
+            contexto.fillRect(310, 576, 60, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(231,189,149,255)";
+            contexto.fillRect(330, 596, 20, 20);
+            contexto.closePath();
+            
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(231,189,149,255)";
+            contexto.fillRect(210, 596, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(160,104,79,255)";
+            contexto.fillRect(330, 616, 20, 20);
+            contexto.closePath();
+            
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(160,104,79,255)";
+            contexto.fillRect(210, 616, 20, 20);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(160,104,79,255)";
+            contexto.fillRect(330, 636, 40, 20);
+            contexto.closePath();
+            
+            contexto.beginPath();
+            contexto.fillStyle = "rgba(160,104,79,255)";
+            contexto.fillRect(190, 636, 40, 20);
+            contexto.closePath();
+
+
+
+        }
+    </script>
+</body>
+</html>
