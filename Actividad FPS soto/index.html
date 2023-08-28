@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        canvas {
+            background-color: rgb(221, 161, 133);
+            border: 1px solid;
+
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+
+    <canvas width="500" height="500" id="myCanvas"></canvas>
+
+    <script>
+
+        //cuando cargues lo de arriba, vas a hacer esto de aca abajito
+        window.onload = () => {
+            const canvas = document.getElementById('myCanvas');
+            const contexto = canvas.getContext('2d'); //uste me dijo que era con mayusculas y no, y buscando poke no jalaba profe :C
+            var color = "rgba(13,242,23,0,0.5)";
+            var figura = true;
+            let press = false;
+            var x = 225;
+            var y = 225;
+            var keycode;
+            var dir = 0;
+
+            document.addEventListener("keydown", (event) => {
+                switch (event.keyCode) {
+                    case 87:
+                        dir = event.keyCode;
+
+                        break;
+
+                    case 83:
+                        dir = event.keyCode;
+
+                        break;
+
+                    case 68:
+                        dir = event.keyCode;
+
+                        break;
+
+                    case 65:
+                        dir = event.keyCode;
+
+                        break;
+                }
+                
+
+            })
+
+            function update() {
+
+                switch (dir) {
+                    case 87:
+                        y -= 10;
+                        if(y < -50){ y = 550;}
+                        break;
+
+                    case 83:
+                        y += 10;
+                        if(y > 550){ y = -50;}
+                        break;
+
+                    case 68:
+                        x += 10
+                        if(x > 550 ){x = -50;}
+                        break;
+
+                    case 65:
+                        x -= 10;
+                        if(x < -50) {x = 550;}
+                        break;
+                }
+                repaint();
+                window.requestAnimationFrame(update);
+            }
+
+            function repaint() {
+                contexto.fillStyle = "rgb(221, 161, 133)";
+                contexto.fillRect(0, 0, 500, 500);
+
+                contexto.fillStyle = random_rgba();
+                contexto.fillRect(x, y, 50, 50);
+                contexto.strokeRect(x, y, 50, 50);
+
+            }
+
+            window.requestAnimationFrame = (function () {
+                return window.requestAnimationFrame ||
+                    window.webkitRequestAnimationFrame ||
+                    window.mozRequestAnimationFrame ||
+                    function (callback) {
+                        window.setTimeout(callback, 17);
+                    };
+            }());
+
+            window.requestAnimationFrame(update);
+
+
+            function random_rgba() {
+                var o = Math.round, r = Math.random, s = 255;
+                return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + r().toFixed(1) + ')';
+            }
+
+        }
+
+
+
+
+    </script>
+
+</body>
+
+</html>
