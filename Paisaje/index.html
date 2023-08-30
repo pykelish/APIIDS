@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        canvas {
+            background-color: white;
+            /*border: 1px solid; */
+
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+
+    <canvas width="720" height="960" id="myCanvas"></canvas>
+
+    <script>
+
+        //cuando cargues lo de arriba, vas a hacer esto de aca abajito
+        window.onload = () => {
+            const canvas = document.getElementById('myCanvas');
+            const contexto = canvas.getContext('2d'); //uste me dijo que era con mayusculas y no, y buscando poke no jalaba profe :C
+
+
+            // Fondo
+            contexto.beginPath();
+            var grdCirc = contexto.createRadialGradient(720,960,1,720,960,900);
+            grdCirc.addColorStop(0.15, "#FFFFFF");
+            grdCirc.addColorStop(0.40, "#FAC961");
+            grdCirc.addColorStop(0.80, "#F2880D");
+            grdCirc.addColorStop(1, "#FF4B4B");
+            contexto.fillStyle = grdCirc;
+            contexto.fillRect(0,0,720,960);
+            contexto.closePath();
+            
+            contexto.beginPath();
+            var grd2 = contexto.createLinearGradient(400, 0, 990, 550);
+            grd2.addColorStop(0.50, "#C29633");
+            grd2.addColorStop(1, "#FFDB8A");
+            contexto.fillStyle = grd2;
+            contexto.fillRect(0, 860, 720, 300);
+            contexto.fill();
+            contexto.closePath();
+
+
+            contexto.beginPath();
+            var grd5 = contexto.createLinearGradient(600, 0, 600, 750);
+            grd5.addColorStop(0, "#EBC05F");
+            grd5.addColorStop(1, "#FFDB8A");
+            contexto.fillStyle = grd5;
+            contexto.moveTo(330, 670);
+            contexto.lineTo(600, 860);
+            contexto.lineTo(160, 860);
+            contexto.fill();
+            contexto.closePath();
+
+            contexto.beginPath();
+            var grd6 = contexto.createLinearGradient(600, 0, 600, 750);
+            grd6.addColorStop(0, "#EBC05F");
+            grd6.addColorStop(1, "#C29633");
+            contexto.fillStyle = grd6;
+            contexto.moveTo(330, 670);
+            contexto.lineTo(330, 860);
+            contexto.lineTo(160, 860);
+            contexto.fill();
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "#FFDB8A";
+            contexto.moveTo(0, 560);
+            contexto.lineTo(380, 860);
+            contexto.lineTo(0, 860);
+            contexto.fill();
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "#185112";
+            contexto.roundRect(100, 750, 18, 140, [100, 100, 0, 0]);
+            contexto.roundRect(100, 800, 58, 18, [0, 0, 100, 0]);
+            contexto.roundRect(140, 730, 18, 70, [100, 100, 0, 0]);
+            contexto.roundRect(75, 825, 40, 18, [0, 0, 0, 100]);
+            contexto.roundRect(75, 710, 18, 120, [100, 100, 0, 0]);
+            contexto.fill();
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "#185112";
+            contexto.roundRect(450, 900, 28, 60, [100, 100, 0, 0]);
+            contexto.roundRect(410, 920, 40, 22, [0, 0, 0, 100]);
+            contexto.roundRect(410, 880, 25, 45, [100, 100, 0, 0]);
+            contexto.roundRect(490, 850, 25, 110, [100, 100, 0, 0]);
+            contexto.fill();
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "#185112";
+            contexto.roundRect(570, 800, 10, 60, [100, 100, 0, 0]);
+            contexto.roundRect(575, 845, 20, 8, [0, 0, 100, 0]);
+            contexto.roundRect(587, 775, 8, 70, [100, 100, 0, 0]);
+            contexto.fill();
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "#185112";
+            contexto.roundRect(250, 800, 10, 60, [100, 100, 0, 0]);
+            contexto.roundRect(258, 845, 20, 8, [0, 0, 100, 0]);
+            contexto.roundRect(268, 779, 10, 70, [100, 100, 0, 0]);
+            contexto.fill();
+            contexto.closePath();
+
+            contexto.beginPath()
+            contexto.moveTo(20, 890);
+            contexto.lineTo(120, 890);
+            contexto.moveTo(535, 860);
+            contexto.lineTo(579, 860);
+            contexto.moveTo(260, 860);
+            contexto.lineTo(200, 860);
+            contexto.lineWidth = 2.5;
+            contexto.strokeStyle = "#946706";
+            contexto.lineCap = 'round'
+            contexto.stroke();
+            contexto.closePath();
+
+
+
+        }
+
+
+
+
+    </script>
+
+</body>
+
+</html>
