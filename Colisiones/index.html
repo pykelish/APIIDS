@@ -55,6 +55,8 @@
         const player = new rectangulo(225, 255, 50, 50, random_rgba());
         const target = new rectangulo(400, 400, 50, 50, "black");
         paredes.push(new rectangulo(100, 50, 300, 50, "gray"));
+        paredes.push(new rectangulo(100, 400, 300, 50, "gray"));
+        paredes.push(new rectangulo(400, 130, 50, 200, "gray"));
 
         document.addEventListener('keydown', (event) => {
             switch (event.keyCode) {
