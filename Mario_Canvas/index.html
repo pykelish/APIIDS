@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        canvas {
+            background-color: white;
+            border: 1px solid;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <canvas width="1200" height="700" id="my_canvas"></canvas>
+
+    </center>
+    <img src="mario.png" style="display: none;" width="100px" height="100px" id="Mario">
+
+    <script>
+        var canvas = document.getElementById('my_canvas');
+        var contexto = canvas.getContext('2d');
+        var imagenMario = document.getElementById("Mario");
+
+        window.onload = () => {
+
+
+            contexto.beginPath();
+            contexto.fillStyle = "#B3EEFE";
+            contexto.fillRect(0, 0, 1200, 700);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "#b16f3b";
+            contexto.fillRect(0, 550, 1200, 150);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "#fc9559";
+            contexto.fillRect(0, 550, 1200, 30);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.lineWidth = 2;
+            contexto.strokeStyle = "#000000";
+            contexto.strokeRect(-1, 550, 1202, 30);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "#FF9062";
+            contexto.fillRect(50, 250, 70, 70);
+            contexto.fillRect(200, 60, 70, 70);
+            contexto.fillRect(270, 60, 70, 70);
+            contexto.fillRect(1000, 125, 70, 70);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.strokeStyle = "#000000";
+            contexto.strokeRect(50, 250, 70, 70);
+            contexto.strokeRect(200, 60, 70, 70);
+            contexto.strokeRect(270, 60, 70, 70);
+            contexto.strokeRect(1000, 125, 70, 70);
+            contexto.stroke();
+
+            contexto.beginPath();
+            contexto.fillStyle = "#000000";
+
+            contexto.fillRect(55, 255, 5, 5);
+            contexto.fillRect(205, 65, 5, 5);
+            contexto.fillRect(275, 65, 5, 5);
+            contexto.fillRect(1005, 130, 5, 5);
+
+            contexto.fillRect(107, 255, 5, 5);
+            contexto.fillRect(257, 65, 5, 5);
+            contexto.fillRect(327, 65, 5, 5);
+            contexto.fillRect(1057, 130, 5, 5);
+
+            contexto.fillRect(55, 307, 5, 5);
+            contexto.fillRect(205, 117, 5, 5);
+            contexto.fillRect(275, 117, 5, 5);
+            contexto.fillRect(1005, 183, 5, 5);
+
+            contexto.fillRect(107, 307, 5, 5);
+            contexto.fillRect(257, 117, 5, 5);
+            contexto.fillRect(327, 117, 5, 5);
+            contexto.fillRect(1057, 183, 5, 5);
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "#000000";
+            contexto.roundRect(540, 250, 100, 300, [0, 10, 0, 0]);
+            contexto.fill();
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.lineWidth = 4;
+            contexto.fillStyle = "#71c2ff";
+            contexto.strokeStyle = "#000000";
+            contexto.roundRect(410, 200, 205, 350, [10, 10, 10, 10]);
+            contexto.fill();
+            contexto.stroke();
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "#000000";
+            contexto.roundRect(415, 370, 100, 180, [0, 10, 0, 0]);
+            contexto.fill();
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.lineWidth = 4;
+            contexto.fillStyle = "#ffc0b5";
+            contexto.strokeStyle = "#000000";
+            contexto.roundRect(265, 330, 220, 220, [10, 10, 10, 10]);
+            contexto.fill();
+            contexto.stroke();
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.lineWidth = 4;
+            contexto.fillStyle = "#00dd5b";
+            contexto.strokeStyle = "#000000";
+            contexto.roundRect(1080, 330, 210, 220, [10, 10, 10, 10]);
+            contexto.fill();
+            contexto.stroke();
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.strokeStyle = "#000000";
+            contexto.arc(290, 355, 15, 0, 2 * Math.PI);
+            contexto.stroke();
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "#C7D2D6"
+            contexto.arc(290, 355, 15, 0, 2 * Math.PI);
+            contexto.fill();
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.strokeStyle = "#000000";
+            contexto.arc(290, 525, 15, 0, 2 * Math.PI);
+            contexto.stroke();
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "#C7D2D6"
+            contexto.arc(290, 525, 15, 0, 2 * Math.PI);
+            contexto.fill();
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.strokeStyle = "#000000";
+            contexto.arc(460, 525, 15, 0, 2 * Math.PI);
+            contexto.stroke();
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "#C7D2D6"
+            contexto.arc(460, 525, 15, 0, 2 * Math.PI);
+            contexto.fill();
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.strokeStyle = "#000000";
+            contexto.arc(460, 355, 15, 0, 2 * Math.PI);
+            contexto.stroke();
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "#C7D2D6"
+            contexto.arc(460, 355, 15, 0, 2 * Math.PI);
+            contexto.fill();
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.strokeStyle = "#000000";
+            contexto.arc(590, 525, 15, 0, 2 * Math.PI);
+            contexto.stroke();
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "#C7D2D6"
+            contexto.arc(590, 525, 15, 0, 2 * Math.PI);
+            contexto.fill();
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.strokeStyle = "#000000";
+            contexto.arc(590, 225, 15, 0, 2 * Math.PI);
+            contexto.stroke();
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "#C7D2D6"
+            contexto.arc(590, 225, 15, 0, 2 * Math.PI);
+            contexto.fill();
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.strokeStyle = "#000000";
+            contexto.arc(435, 225, 15, 0, 2 * Math.PI);
+            contexto.stroke();
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "#C7D2D6"
+            contexto.arc(435, 225, 15, 0, 2 * Math.PI);
+            contexto.fill();
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.strokeStyle = "#000000";
+            contexto.arc(1110, 525, 15, 0, 2 * Math.PI);
+            contexto.stroke();
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "#C7D2D6"
+            contexto.arc(1110, 525, 15, 0, 2 * Math.PI);
+            contexto.fill();
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.strokeStyle = "#000000";
+            contexto.arc(1110, 355, 15, 0, 2 * Math.PI);
+            contexto.stroke();
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "#C7D2D6"
+            contexto.arc(1110, 355, 15, 0, 2 * Math.PI);
+            contexto.fill();
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "#007c00";
+            contexto.fillRect(826, 350, 140, 200);
+            contexto.fill();
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.strokeStyle = "#000000";
+            contexto.strokeRect(826, 350, 140, 200);
+            contexto.stroke();
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStyle = "#1C8802";
+            contexto.fillRect(810, 320, 170, 80);
+            contexto.fill();
+            contexto.closePath();
+
+            contexto.beginPath();
+            contexto.fillStroke = "#000000";
+            contexto.strokeRect(810, 320, 170, 80);
+            contexto.closePath();
+
+            contexto.drawImage(imagenMario, 100, 420, 130, 130);
+        }
+    </script>
+</body>
+
+</html>
