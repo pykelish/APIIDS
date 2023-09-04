@@ -22,6 +22,8 @@
         var canvas = document.getElementById('my_canvas');
         var contexto = canvas.getContext('2d');
         var dir = 0;
+        var velocidad = 10;
+        let paredes = [];
 
         class rectangulo {
             constructor(x, y, w, h, color) {
@@ -52,6 +54,7 @@
 
         const player = new rectangulo(225, 255, 50, 50, random_rgba());
         const target = new rectangulo(400, 400, 50, 50, "black");
+        paredes.push(new rectangulo(100, 50, 300, 50, "gray"));
 
         document.addEventListener('keydown', (event) => {
             switch (event.keyCode) {
@@ -73,19 +76,19 @@
         function update() {
             switch (dir) {
                 case 87:
-                    player.y -= 10;
+                    player.y -= velocidad;
                     if (player.y < -50) { player.y = 550; }
                     break;
                 case 83:
-                    player.y += 10;
+                    player.y += velocidad;
                     if (player.y > 550) { player.y = -50; }
                     break;
                 case 65:
-                    player.x -= 10;
+                    player.x -= velocidad;
                     if (player.x < -50) { player.x = 550; }
                     break;
                 case 68:
-                    player.x += 10;
+                    player.x += velocidad;
                     if (player.x > 550) { player.x = -50; }
                     break;
             }
@@ -93,6 +96,27 @@
                 target.x = Math.random() * (450);
                 target.y = Math.random() * (450);
             }
+
+
+            for (var i = paredes.length - 1; i >= 0; i--) {
+                if(player.seTocan(paredes[i])) {
+                    switch (dir) {
+                        case 87:
+                            player.y += velocidad;
+                        break;
+                        case 83:
+                            player.y -= velocidad;
+                        break;
+                        case 65:
+                            player.x += velocidad;
+                        break;
+                        case 68:
+                            player.x -= velocidad;
+                        break;
+                    }
+                }
+            }
+
             repaint();
             window.requestAnimationFrame(update);
         }
@@ -104,6 +128,10 @@
             player.color = random_rgba();
             player.pintarRectangulo(contexto);
             target.pintarRectangulo(contexto);
+            for (var i = paredes.length - 1; i >= 0; i--) {
+                paredes[i].pintarRectangulo(contexto);
+            }
+
         }
 
         function random_rgba() {
