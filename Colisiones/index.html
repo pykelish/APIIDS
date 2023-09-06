@@ -25,7 +25,15 @@
         var velocidad = 10;
         var pause = false;
         let paredes = [];       
-        var score = 0; 
+        var score = 0;
+        let imagen = new Image();
+        imagen.src = "espectro.png";
+        let imagen2 = new Image();
+        imagen2.src = "engrama.png";
+        let audio = new Audio();
+        audio.src = "sonido_Engrama.mp3";
+
+
 
         class rectangulo {
             constructor(x, y, w, h, color) {
@@ -106,6 +114,7 @@
                 target.x = Math.random() * (450);
                 target.y = Math.random() * (450);
                 score += 10;
+                audio.play();
             }
 
 
@@ -140,8 +149,8 @@
                 contexto.fillStyle = "black";
                 contexto.fillText("Score: " + score, 5, 20);
                 player.color = random_rgba();
-                player.pintarRectangulo(contexto);
-                target.pintarRectangulo(contexto);
+                contexto.drawImage(imagen, player.x, player.y, 50, 50);
+                contexto.drawImage(imagen2, target.x, target.y, 50, 50);
                 for (var i = paredes.length - 1; i >= 0; i--) {
                     paredes[i].pintarRectangulo(contexto);
                 }
