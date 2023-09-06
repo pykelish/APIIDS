@@ -23,7 +23,9 @@
         var contexto = canvas.getContext('2d');
         var dir = 0;
         var velocidad = 10;
-        let paredes = [];
+        var pause = false;
+        let paredes = [];       
+        var score = 0; 
 
         class rectangulo {
             constructor(x, y, w, h, color) {
@@ -61,60 +63,67 @@
         document.addEventListener('keydown', (event) => {
             switch (event.keyCode) {
                 case 87:
-                    dir = event.keyCode;
-                break;
+                    if(!pause) {dir = event.keyCode;}
+                    break;
                 case 83:
-                    dir = event.keyCode;
-                break;
+                    if(!pause) {dir = event.keyCode;}
+                    break;
                 case 65:
-                    dir = event.keyCode;
-                break;
+                    if(!pause) {dir = event.keyCode;}
+                    break;
                 case 68:
-                    dir = event.keyCode;
-                break;
+                    if(!pause) {dir = event.keyCode;}
+                    break;
+                case 32:
+                    pause = !pause;
+                    break;
             }
         })
 
         function update() {
-            switch (dir) {
-                case 87:
-                    player.y -= velocidad;
-                    if (player.y < -50) { player.y = 550; }
-                    break;
-                case 83:
-                    player.y += velocidad;
-                    if (player.y > 550) { player.y = -50; }
-                    break;
-                case 65:
-                    player.x -= velocidad;
-                    if (player.x < -50) { player.x = 550; }
-                    break;
-                case 68:
-                    player.x += velocidad;
-                    if (player.x > 550) { player.x = -50; }
-                    break;
+            if (!pause) {
+                switch (dir) {
+                    case 87:
+                        player.y -= velocidad;
+                        if (player.y < -50) { player.y = 550; }
+                        break;
+                    case 83:
+                        player.y += velocidad;
+                        if (player.y > 550) { player.y = -50; }
+                        break;
+                    case 65:
+                        player.x -= velocidad;
+                        if (player.x < -50) { player.x = 550; }
+                        break;
+                    case 68:
+                        player.x += velocidad;
+                        if (player.x > 550) { player.x = -50; }
+                        break;
+                }
             }
+
             if (player.seTocan(target)) {
                 target.x = Math.random() * (450);
                 target.y = Math.random() * (450);
+                score += 10;
             }
 
 
             for (var i = paredes.length - 1; i >= 0; i--) {
-                if(player.seTocan(paredes[i])) {
+                if (player.seTocan(paredes[i])) {
                     switch (dir) {
                         case 87:
                             player.y += velocidad;
-                        break;
+                            break;
                         case 83:
                             player.y -= velocidad;
-                        break;
+                            break;
                         case 65:
                             player.x += velocidad;
-                        break;
+                            break;
                         case 68:
                             player.x -= velocidad;
-                        break;
+                            break;
                     }
                 }
             }
@@ -124,16 +133,25 @@
         }
 
         function repaint() {
-            contexto.fillStyle = "rgb(221, 161, 133)";
-            contexto.fillRect(0, 0, 500, 500);
-
-            player.color = random_rgba();
-            player.pintarRectangulo(contexto);
-            target.pintarRectangulo(contexto);
-            for (var i = paredes.length - 1; i >= 0; i--) {
-                paredes[i].pintarRectangulo(contexto);
+            if (!pause) {
+                contexto.fillStyle = "rgb(221, 161, 133)";
+                contexto.fillRect(0, 0, 500, 500);
+                contexto.font = "25px Arial";
+                contexto.fillStyle = "black";
+                contexto.fillText("Score: " + score, 5, 20);
+                player.color = random_rgba();
+                player.pintarRectangulo(contexto);
+                target.pintarRectangulo(contexto);
+                for (var i = paredes.length - 1; i >= 0; i--) {
+                    paredes[i].pintarRectangulo(contexto);
+                }
+            } else {
+                contexto.fillStyle = "rgba(154, 160, 154, 0.025)";
+                contexto.fillRect(0, 0, 500, 500);
+                contexto.fillStyle = "black";
+                contexto.font = "50px Arial"
+                contexto.fillText("P A U S A", 140, 250);
             }
-
         }
 
         function random_rgba() {
