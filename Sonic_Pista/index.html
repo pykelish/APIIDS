@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        canvas {
+            background-color: cyan;
+            border: 1px solid;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <canvas width="1000" height="700px" id="my_canvas"></canvas>
+    </center>
+    <img src="sani.png" style="display: none;" id="Sani">
+    <script>
+        var canvas = document.getElementById('my_canvas');
+        var contexto = canvas.getContext('2d');
+        var posX = 0;
+        var posY = 500;
+        var height = 0;
+        let petalo = 0;
+        var ImagenSani = document.getElementById("Sani");
+
+        window.onload = () => {
+            function pintarRectangulo(x, y, w, h, color) {
+                this.x = x;
+                this.y = y;
+                this.w = w;
+                this.h = h;
+                this.color = color;
+                contexto.beginPath();
+                contexto.fillStyle = this.color;
+                contexto.fillRect(this.x, this.y, this.w, this.h);
+                contexto.closePath();
+            }
+
+            function pintarCirculos(x, y, r, g, color) {
+                this.x = x;
+                this.y = y;
+                this.r = r;
+                this.g = g;
+                this.color = color;
+                contexto.beginPath();
+                contexto.strokeStyle = color;
+                contexto.lineWidth = g;
+                contexto.arc(x, y, r, 0, 2 * Math.PI);
+                contexto.stroke();
+                contexto.closePath();
+            }
+
+            function pintarCirculoRelleno(x, y, r, g, color) {
+                this.x = x;
+                this.y = y;
+                this.r = r;
+                this.g = g;
+                this.color = color;
+                contexto.beginPath();
+                contexto.fillStyle = color;
+                contexto.lineWidth = g;
+                contexto.arc(x, y, r, 0, 2 * Math.PI);
+                contexto.fill();
+                contexto.closePath();
+            }
+
+
+            function pintarHojas(P1X, P1Y, P2X, P2Y, ARX1, ARY1, ARX2, ARY2, c) {
+                this.P1X = P1X;
+                this.P1Y = P1Y;
+                this.P2X = P2X;
+                this.P2Y = P2Y;
+                this.ARX1 = ARX1;
+                this.ARY1 = ARY1;
+                this.ARX2 = ARX2;
+                this.ARY2 = ARY2;
+                this.c = c;
+                contexto.beginPath();
+                contexto.fillStyle = "#80e000";
+                contexto.moveTo(P1X, P1Y);
+                contexto.lineTo(P2X, P2Y);
+                contexto.arcTo(ARX1, ARY1, ARX2, ARY2, c);
+                contexto.fill();
+                contexto.closePath();
+            }
+            function pintarFlor(x, y, w, h, eje, color) {
+                this.x = x;
+                this.y = y;
+                this.w = w;
+                this.h = h;
+                this.eje = eje;
+                this.color = color;
+                contexto.beginPath();
+                contexto.fillStyle = color;
+                contexto.ellipse(this.x, this.y, this.w, this.h, this.eje, 0, 2 * Math.PI, false);
+                contexto.fill();
+                contexto.closePath();
+            }
+            color = "#80e000";
+            height = 16.66;
+            for (let k = 0; k <= 59; k++) {
+                pintarRectangulo(posX, posY, 50, height, color);
+                posX += 50;
+                if (posX >= 1000) {
+                    posY += 16.5;
+                    posX = 0;
+                    color = "#40a000";
+                }
+                if (posY >= 533) {
+                    color = "#006000";
+                }
+            }
+            for (let i = 0; i <= 67; i++) {
+                if (i % 2 == 0) {
+                    pintarRectangulo(posX, posY, 50, 50, "#c06000")
+                    posX += 50;
+                } else {
+                    pintarRectangulo(posX, posY, 50, 50, "#6A2000")
+                    posX += 50;
+                }
+                if (posX >= 1000) {
+                    posY += 50;
+                    posX = -50;
+                }
+            }
+            posX = 70;
+            for (let i = 0; i <= 5; i++) {
+                if (i % 2 == 0) {
+                    pintarCirculos(posX, 460, 30, 6, "#ffff00");
+                    posX += 80;
+                }
+            }
+            pintarRectangulo(500, 250, 20, 250, "#804000");
+            pintarHojas(490, 230, 590, 230, 640, 230, 640, 280, 130);
+            pintarHojas(530, 230, 430, 230, 380, 230, 380, 280, 130);
+            pintarHojas(460, 210, 570, 210, 660, 210, 670, 240, 130);
+            pintarHojas(560, 210, 460, 210, 370, 200, 360, 230, 130);
+            pintarRectangulo(896, 400, 10, 100, "#804000");
+            for (let i = 0; i <= 10; i++) {
+                pintarFlor(900, 400, 10, 50, petalo, "#e0e000");
+                petalo += .9;
+
+            }
+            pintarCirculoRelleno(901, 400, 15, 0, "#406040");
+
+            contexto.drawImage(ImagenSani, 300, 350, 150, 150);
+        }
+
+    </script>
+</body>
+
+</html>
