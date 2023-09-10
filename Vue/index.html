@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primera practica VUE</title>
+    <style>
+        body {
+            background-color: rgb(221, 161, 133);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="container">
+        <h1> Buenas días {{ name }} </h1>
+
+        <input type="text" v-model="name" name="">
+
+        <br><br>
+
+        <button @click="count++">
+            Count is: {{ count }}
+        </button>
+
+        <br><br>
+
+        <input type="" v-model="numero1"> <br>
+        <input type="" v-model="numero2"> <br>
+        <br>
+
+        <button @click="result=((+numero1)+(+numero2))">
+            Suma
+        </button>
+
+        <h3>Resultado: <span v-if="result!=0"> {{ result }}</span> </h3>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script type="text/javascript">
+        const { createApp, ref } = Vue
+
+        createApp({
+            setup() {
+                const message = "";
+                const name = "";
+                const numero1 = 0;
+                const numero2 = 0;
+                const result = 0;
+                return {
+                    name: ref(''),
+                    count: ref(0),
+                    numero1: ref(0),
+                    numero2: ref(0),
+                    result: ref(0)
+                }
+            }
+        }).mount('#container')
+    </script>
+</body>
+
+</html>
