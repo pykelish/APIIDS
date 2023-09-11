@@ -34,7 +34,31 @@
             Suma
         </button>
 
-        <h3>Resultado: <span v-if="result!=0"> {{ result }}</span> </h3>
+        <h3>Resultado: <span v-if="result!=0"> {{ result }}</span> </h3><br>
+
+        <form>
+            <hr>
+            <li v-for="item in persons">
+                {{item.nombre}} - {{item.Apellido}}
+            </li>
+
+            </hr>
+
+            <fieldset>
+                <legend>
+                    Nombre(s);
+                </legend>
+                <input type="text" v-model="nombre" name="">
+                <legend>
+                    Apellidos(s);
+                </legend>
+                <input type="text" v-model="Apellido" name="">
+                <br>
+            </fieldset>
+            <br>
+            <button type="button" v-on:click="addPerson">Anexar Chamaco</button>
+
+        </form>
     </div>
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -48,12 +72,26 @@
                 const numero1 = 0;
                 const numero2 = 0;
                 const result = 0;
+                const nombre = ref(''), Apellido = ref('');
+                const persons = ref([]);
                 return {
                     name: ref(''),
                     count: ref(0),
                     numero1: ref(0),
                     numero2: ref(0),
-                    result: ref(0)
+                    result: ref(0),
+                    nombre,
+                    Apellido,
+                    persons
+                }
+            },
+            methods: {
+                addPerson() {
+                    const person = {
+                        nombre: this.nombre,
+                        Apellido: this.Apellido
+                    }
+                    this.persons.push(person);
                 }
             }
         }).mount('#container')
