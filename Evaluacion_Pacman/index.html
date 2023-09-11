@@ -15,14 +15,14 @@
 
 <body>
     <center>
-        <canvas width="2000px" height="2500px" id="my_canvas"></canvas>
+        <canvas width="2000px" height="3000px" id="my_canvas"></canvas>
     </center>
     <script>
 
         var canvas = document.getElementById('my_canvas');
         var contexto = canvas.getContext('2d');
         var dir = 0;
-        var velocidad = 20;
+        var velocidad = 10;
         var pause = false;
         let paredes = [];       
         var score = 0;
@@ -62,16 +62,41 @@
             }
         }
 
-        const player = new rectangulo(500, 1000, 100, 100, random_rgba());
+        const player = new rectangulo(450, 300, 100, 100, random_rgba());
         const target = new rectangulo(600, 0, 100, 100);
+        
         paredes.push(new rectangulo(1, 200, 1998, 50, "blue"));
-        paredes.push(new rectangulo(1, 250, 50, 700, "blue"));
-        paredes.push(new rectangulo(1948, 250, 50, 700, "blue"));
-        paredes.push(new rectangulo(51, 900, 400, 50, "blue"));
-        paredes.push(new rectangulo(1548, 900, 400, 50, "blue"));
+        paredes.push(new rectangulo(1, 250, 50, 600, "blue"));
+        paredes.push(new rectangulo(1948, 250, 50, 600, "blue"));
+        paredes.push(new rectangulo(51, 800, 365, 50, "blue"));
+        paredes.push(new rectangulo(1584, 800, 365, 50, "blue"));
         paredes.push(new rectangulo(975, 250, 50, 200, "blue"));
-        paredes.push(new rectangulo(200, 400, 200, 100, "blue"));
-        paredes.push(new rectangulo(200, 400, 200, 100, "blue"));
+        paredes.push(new rectangulo(165, 350, 250, 100, "blue"));
+        paredes.push(new rectangulo(550, 350, 300, 100, "blue"));
+        paredes.push(new rectangulo(1150, 350, 300, 100, "blue"));
+        paredes.push(new rectangulo(1584, 350, 250, 100, "blue"));
+        paredes.push(new rectangulo(165, 570, 250, 50, "blue"));
+        paredes.push(new rectangulo(1584, 570, 250, 50, "blue"));
+        paredes.push(new rectangulo(750, 570, 470, 50, "blue"));
+        paredes.push(new rectangulo(550, 570, 50, 530, "blue"));
+        paredes.push(new rectangulo(1400, 570, 50, 530, "blue"));
+        paredes.push(new rectangulo(365, 850, 50, 250, "blue"));
+        paredes.push(new rectangulo(1584, 850, 50, 250, "blue"));
+        paredes.push(new rectangulo(0, 1050, 365, 50, "blue"));
+        paredes.push(new rectangulo(1634, 1050, 365, 50, "blue"));
+        paredes.push(new rectangulo(0, 1250, 415, 50, "blue"));
+        paredes.push(new rectangulo(1585, 1250, 415, 50, "blue"));
+        paredes.push(new rectangulo(365, 1300, 50, 250, "blue"));
+        paredes.push(new rectangulo(1585, 1300, 50, 250, "blue"));
+        paredes.push(new rectangulo(0, 1550, 415, 50, "blue"));
+        paredes.push(new rectangulo(1585, 1550, 415, 50, "blue"));
+        paredes.push(new rectangulo(0, 1600, 50, 500, "blue"));
+        paredes.push(new rectangulo(1950, 1600, 50, 500, "blue"));
+        paredes.push(new rectangulo(0, 2100, 200, 50, "blue"));
+        paredes.push(new rectangulo(1800, 2100, 200, 50, "blue"));
+        paredes.push(new rectangulo(0, 2150, 50, 500, "blue"));
+        paredes.push(new rectangulo(1950, 2150, 50, 500, "blue"));
+        paredes.push(new rectangulo(1, 2650, 1998, 50, "blue"));
 
         document.addEventListener('keydown', (event) => {
             switch (event.keyCode) {
@@ -98,19 +123,19 @@
                 switch (dir) {
                     case 87:
                         player.y -= velocidad;
-                        if (player.y < -50) { player.y = 1550; }
+                        if (player.y < -50) { player.y = 2600; }
                         break;
                     case 83:
                         player.y += velocidad;
-                        if (player.y > 1550) { player.y = -50; }
+                        if (player.y > 2600) { player.y = -50; }
                         break;
                     case 65:
                         player.x -= velocidad;
-                        if (player.x < -50) { player.x = 1550; }
+                        if (player.x < -100) { player.x = 2600; }
                         break;
                     case 68:
                         player.x += velocidad;
-                        if (player.x > 1550) { player.x = -50; }
+                        if (player.x > 2600) { player.x = -50; }
                         break;
                 }
             }
@@ -150,7 +175,7 @@
         function repaint() {
             if (!pause) {
                 contexto.fillStyle = "black";
-                contexto.fillRect(0, 0, 2000, 2500);
+                contexto.fillRect(0, 0, 2000, 3000);
                 contexto.font = "80px Arial";
                 contexto.fillStyle = "white";
                 contexto.fillText("Score: " + score, 5, 80);
@@ -163,11 +188,11 @@
 
                 
             } else {
-                contexto.fillStyle = "rgba(154, 160, 154, 0.025)";
-                contexto.fillRect(0, 0, 1500, 1500);
-                contexto.fillStyle = "black";
+                contexto.fillStyle = "rgba(0, 0, 0, 0.025)";
+                contexto.fillRect(0, 0, 2000, 3000);
+                contexto.fillStyle = "white";
                 contexto.font = "100px Arial"
-                contexto.fillText("P A U S A", 490, 600);
+                contexto.fillText("P A U S A", 790, 1300);
             }
         }
 
