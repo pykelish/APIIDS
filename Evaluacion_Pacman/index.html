@@ -24,14 +24,21 @@
         var dir = 0;
         var velocidad = 10;
         var pause = false;
-        let paredes = [];       
+        let paredes = [];
+        let puntos = [];
         var score = 0;
         let imagen_Player = new Image();
         imagen_Player.src = "cayde.png";
-        let imagen_orbes = new Image();
-        imagen_orbes.src = "orbe.png";
-        let audio = new Audio();
-        audio.src = "sonido_Engrama.mp3";
+        let imagen_engLeg = new Image();
+        imagen_engLeg.src = "engrama_legendario.png";
+        let imagen_engExo = new Image();
+        imagen_engExo.src = "engrama_exotico.png";
+        let sonido_engramaLeg = new Audio();
+        sonido_engramaLeg.src = "sonido_Engrama.mp3";
+        let musica = new Audio();
+        musica.src = "musica_ambiente.wav";
+        let posX = 250;
+        let posy = 250;
 
 
 
@@ -62,8 +69,148 @@
             }
         }
 
-        const player = new rectangulo(450, 300, 100, 100, random_rgba());
-        const target = new rectangulo(600, 0, 100, 100);
+        //musica.play();
+        //musica.loop=true;
+
+        const player = new rectangulo(450, 500, 100, 100, random_rgba());
+        var contador = 0;
+        n = 0;
+        x = setInterval(function () {
+            console.log(n);
+
+            n++;
+        }, 1000);
+
+
+        document.addEventListener('keydown', (event) => {
+            switch (event.keyCode) {
+                case 87:
+                    if (!pause) { dir = event.keyCode; }
+                    break;
+                case 83:
+                    if (!pause) { dir = event.keyCode; }
+                    break;
+                case 65:
+                    if (!pause) { dir = event.keyCode; }
+                    break;
+                case 68:
+                    if (!pause) { dir = event.keyCode; }
+                    break;
+                case 32:
+                    pause = !pause;
+                    break;
+            }
+        })
+
+        function update() {
+            if (!pause) {
+                switch (dir) {
+                    case 87:
+                        player.y -= velocidad;
+                        if (player.y < -50) { player.y = 2600; }
+                        break;
+                    case 83:
+                        player.y += velocidad;
+                        if (player.y > 2600) { player.y = -50; }
+                        break;
+                    case 65:
+                        player.x -= velocidad;
+                        if (player.x < -100) { player.x = 2600; }
+                        break;
+                    case 68:
+                        player.x += velocidad;
+                        if (player.x > 2600) { player.x = -50; }
+                        break;
+                }
+            }
+
+            for (var i = paredes.length - 1; i >= 0; i--) {
+                if (player.seTocan(paredes[i])) {
+                    switch (dir) {
+                        case 87:
+                            player.y += velocidad;
+                            break;
+                        case 83:
+                            player.y -= velocidad;
+                            break;
+                        case 65:
+                            player.x += velocidad;
+                            break;
+                        case 68:
+                            player.x -= velocidad;
+                            break;
+                    }
+                }
+            }
+
+
+
+
+            repaint();
+            window.requestAnimationFrame(update);
+        }
+
+        function repaint() {
+            if (!pause) {
+                contexto.fillStyle = "black";
+                contexto.fillRect(0, 0, 2000, 3000);
+                contexto.font = "80px Arial";
+                contexto.fillStyle = "white";
+                contexto.fillText("Score: " + score, 5, 80);
+                contexto.fillStyle = "white";
+                contexto.font = "80px Arial"
+                contexto.fillText("Tiempo: ", 1600, 80);
+                contexto.fillText(n, 1900, 80);
+                player.color = random_rgba();
+                contexto.drawImage(imagen_Player, player.x, player.y, 100, 100);
+                let posX = 100;
+
+                for (var i = paredes.length - 1; i >= 0; i--) {
+                    paredes[i].pintarRectangulo(contexto);
+                }
+
+                for (var i = puntos.length - 1; i >= 0; i--) {
+                    puntos[i].pintarRectangulo(contexto);
+                    contexto.drawImage(imagen_engLeg, puntos[i].x, puntos[i].y, 50, 50);
+                }
+                for (var i = puntos.length - 1; i >= 0; i--) {
+                    if (player.seTocan(puntos[i])) {
+                        sonido_engramaLeg.play();
+                        score += 10;
+                        puntos[i].x = 3000;
+                    }
+                }
+                
+
+
+
+
+            } else {
+                contexto.fillStyle = "rgba(0, 0, 0, 0.025)";
+                contexto.fillRect(0, 0, 2000, 3000);
+                contexto.fillStyle = "white";
+                contexto.font = "100px Arial"
+                contexto.fillText("P A U S A", 790, 1300);
+            }
+        }
+
+        function random_rgba() {
+            var o = Math.round, r = Math.random, s = 255;
+            return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + r().toFixed(1) + ')';
+        }
+
+        window.requestAnimationFrame = (function () {
+            return window.requestAnimationFrame ||
+                window.webkitRequestAnimationFrame ||
+                window.mozRequestAnimationFrame ||
+                function (callback) {
+                    window.setTimeout(callback, 17);
+                };
+        }());
+        window.requestAnimationFrame(update);
+
+
+
         paredes.push(new rectangulo(1, 200, 1998, 50, "blue"));
         paredes.push(new rectangulo(1, 250, 50, 600, "blue"));
         paredes.push(new rectangulo(1948, 250, 50, 600, "blue"));
@@ -117,120 +264,17 @@
         paredes.push(new rectangulo(550, 2100, 50, 250, "blue"));
         paredes.push(new rectangulo(1400, 2100, 50, 250, "blue"));
 
-        
-
-        document.addEventListener('keydown', (event) => {
-            switch (event.keyCode) {
-                case 87:
-                    if(!pause) {dir = event.keyCode;}
-                    break;
-                case 83:
-                    if(!pause) {dir = event.keyCode;}
-                    break;
-                case 65:
-                    if(!pause) {dir = event.keyCode;}
-                    break;
-                case 68:
-                    if(!pause) {dir = event.keyCode;}
-                    break;
-                case 32:
-                    pause = !pause;
-                    break;
-            }
-        })
-
-        function update() {
-            if (!pause) {
-                switch (dir) {
-                    case 87:
-                        player.y -= velocidad;
-                        if (player.y < -50) { player.y = 2600; }
-                        break;
-                    case 83:
-                        player.y += velocidad;
-                        if (player.y > 2600) { player.y = -50; }
-                        break;
-                    case 65:
-                        player.x -= velocidad;
-                        if (player.x < -100) { player.x = 2600; }
-                        break;
-                    case 68:
-                        player.x += velocidad;
-                        if (player.x > 2600) { player.x = -50; }
-                        break;
-                }
-            }
-
-            if (player.seTocan(target)) {
-                audio.play();
-                target.x = Math.random() * (1450);
-                target.y = Math.random() * (1450);
-                score += 10;
-                
-            }
-
-
-            for (var i = paredes.length - 1; i >= 0; i--) {
-                if (player.seTocan(paredes[i])) {
-                    switch (dir) {
-                        case 87:
-                            player.y += velocidad;
-                            break;
-                        case 83:
-                            player.y -= velocidad;
-                            break;
-                        case 65:
-                            player.x += velocidad;
-                            break;
-                        case 68:
-                            player.x -= velocidad;
-                            break;
-                    }
-                }
-            }
-
-            repaint();
-            window.requestAnimationFrame(update);
+        posX = 100;
+        for (var i = 0; i <= 22; i++) {
+            puntos.push(new rectangulo(posX, 2450, 50, 50, "black"));
+            posX += 80;
         }
 
-        function repaint() {
-            if (!pause) {
-                contexto.fillStyle = "black";
-                contexto.fillRect(0, 0, 2000, 3000);
-                contexto.font = "80px Arial";
-                contexto.fillStyle = "white";
-                contexto.fillText("Score: " + score, 5, 80);
-                player.color = random_rgba();
-                contexto.drawImage(imagen_Player, player.x, player.y, 100, 100);
-                contexto.drawImage(imagen_orbes, target.x, target.y, 100, 100);
-                for (var i = paredes.length - 1; i >= 0; i--) {
-                    paredes[i].pintarRectangulo(contexto);
-                }
-
-                
-            } else {
-                contexto.fillStyle = "rgba(0, 0, 0, 0.025)";
-                contexto.fillRect(0, 0, 2000, 3000);
-                contexto.fillStyle = "white";
-                contexto.font = "100px Arial"
-                contexto.fillText("P A U S A", 790, 1300);
-            }
+        posX = 90;
+        for (var i = 0; i <= 10; i++) {
+            puntos.push(new rectangulo(posX, 270, 50, 50, "black"));
+            posX += 80;
         }
-
-        function random_rgba() {
-            var o = Math.round, r = Math.random, s = 255;
-            return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + r().toFixed(1) + ')';
-        }
-
-        window.requestAnimationFrame = (function () {
-            return window.requestAnimationFrame ||
-                window.webkitRequestAnimationFrame ||
-                window.mozRequestAnimationFrame ||
-                function (callback) {
-                    window.setTimeout(callback, 17);
-                };
-        }());
-        window.requestAnimationFrame(update);
 
     </script>
 </body>
