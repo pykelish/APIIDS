@@ -24,8 +24,11 @@
         var dir = 0;
         var velocidad = 10;
         var pause = false;
+        var gameOver = false;
         let paredes = [];
         let puntos = [];
+        let exoEng = [];
+        let enemigos = [];
         var score = 0;
         let imagen_Player = new Image();
         imagen_Player.src = "cayde.png";
@@ -33,15 +36,21 @@
         imagen_engLeg.src = "engrama_legendario.png";
         let imagen_engExo = new Image();
         imagen_engExo.src = "engrama_exotico.png";
+        let shank = new Image();
+        shank.src = "shank.png";
         let sonido_engramaLeg = new Audio();
         sonido_engramaLeg.src = "sonido_Engrama.mp3";
+        let sonido_engramaExo = new Audio();
+        sonido_engramaExo.src = "sonido_engramaExo.mp3";
+        let shank_kill = new Audio();
+        shank_kill.src = "shank_kill.mp3";
         let musica = new Audio();
         musica.src = "musica_ambiente.wav";
         let posX = 250;
         let posy = 250;
 
-
-
+        musica.play();
+        musica.loop = true;
         class rectangulo {
             constructor(x, y, w, h, color) {
 
@@ -69,10 +78,9 @@
             }
         }
 
-        //musica.play();
-        //musica.loop=true;
 
-        const player = new rectangulo(450, 500, 100, 100, random_rgba());
+
+        const player = new rectangulo(940, 1400, 100, 100, random_rgba());
         var contador = 0;
         n = 0;
         x = setInterval(function () {
@@ -85,16 +93,16 @@
         document.addEventListener('keydown', (event) => {
             switch (event.keyCode) {
                 case 87:
-                    if (!pause) { dir = event.keyCode; }
+                    if (!pause && score <= 3510) { dir = event.keyCode; }
                     break;
                 case 83:
-                    if (!pause) { dir = event.keyCode; }
+                    if (!pause && score <= 3510) { dir = event.keyCode; }
                     break;
                 case 65:
-                    if (!pause) { dir = event.keyCode; }
+                    if (!pause && score <= 3510) { dir = event.keyCode; }
                     break;
                 case 68:
-                    if (!pause) { dir = event.keyCode; }
+                    if (!pause && score <= 3510) { dir = event.keyCode; }
                     break;
                 case 32:
                     pause = !pause;
@@ -103,7 +111,7 @@
         })
 
         function update() {
-            if (!pause) {
+            if (!pause && score <= 3510) {
                 switch (dir) {
                     case 87:
                         player.y -= velocidad;
@@ -142,57 +150,156 @@
                     }
                 }
             }
-
-
-
-
             repaint();
             window.requestAnimationFrame(update);
         }
-
         function repaint() {
-            if (!pause) {
-                contexto.fillStyle = "black";
-                contexto.fillRect(0, 0, 2000, 3000);
-                contexto.font = "80px Arial";
-                contexto.fillStyle = "white";
-                contexto.fillText("Score: " + score, 5, 80);
-                contexto.fillStyle = "white";
-                contexto.font = "80px Arial"
-                contexto.fillText("Tiempo: ", 1600, 80);
-                contexto.fillText(n, 1900, 80);
-                player.color = random_rgba();
-                contexto.drawImage(imagen_Player, player.x, player.y, 100, 100);
-                let posX = 100;
+            if (score <= 3510) {
+                if (!pause) {
+                    contexto.fillStyle = "black";
+                    contexto.fillRect(0, 0, 2000, 3000);
+                    contexto.font = "80px Arial";
+                    contexto.fillStyle = "white";
+                    contexto.fillText("Score: " + score, 5, 80);
+                    contexto.fillStyle = "white";
+                    contexto.font = "80px Arial"
+                    contexto.fillText("Tiempo: ", 1390, 80);
+                    contexto.fillText(n + " seg", 1690, 80);
+                    player.color = random_rgba();
+                    contexto.drawImage(imagen_Player, player.x, player.y, 100, 100);
 
-                for (var i = paredes.length - 1; i >= 0; i--) {
-                    paredes[i].pintarRectangulo(contexto);
-                }
 
-                for (var i = puntos.length - 1; i >= 0; i--) {
-                    puntos[i].pintarRectangulo(contexto);
-                    contexto.drawImage(imagen_engLeg, puntos[i].x, puntos[i].y, 50, 50);
-                }
-                for (var i = puntos.length - 1; i >= 0; i--) {
-                    if (player.seTocan(puntos[i])) {
-                        sonido_engramaLeg.play();
-                        score += 10;
-                        puntos[i].x = 3000;
+                    let posX = 100;
+                    for (var i = paredes.length - 1; i >= 0; i--) {
+                        paredes[i].pintarRectangulo(contexto);
                     }
+                    for (var i = puntos.length - 1; i >= 0; i--) {
+                        puntos[i].pintarRectangulo(contexto);
+                        contexto.drawImage(imagen_engLeg, puntos[i].x, puntos[i].y, 50, 50);
+                    }
+                    for (var i = exoEng.length - 1; i >= 0; i--) {
+                        exoEng[i].pintarRectangulo(contexto);
+                        contexto.drawImage(imagen_engExo, exoEng[i].x, exoEng[i].y, 80, 80);
+                    }
+                    for (var i = enemigos.length - 1; i >= 0; i--) {
+                        enemigos[0].pintarRectangulo(contexto);
+                        contexto.drawImage(shank, enemigos[0].x, enemigos[0].y, 100, 100);
+                        enemigos[0].x += 5;
+                        for (var i = paredes.length - 1; i >= 0; i--) {
+                            if (enemigos[0].seTocan(paredes[i])) {
+                                enemigos[0].x -= 800;
+                            }
+                        }
+
+                    }
+                    for (var i = enemigos.length - 1; i >= 0; i--) {
+                        enemigos[1].pintarRectangulo(contexto);
+                        contexto.drawImage(shank, enemigos[1].x, enemigos[1].y, 100, 100);
+                        enemigos[1].x += 5;
+
+                        for (var i = paredes.length - 1; i >= 0; i--) {
+                            if (enemigos[1].seTocan(paredes[i])) {
+                                enemigos[1].x -= 1800;
+                            }
+                        }
+                    }
+                    for (var i = enemigos.length - 1; i >= 0; i--) {
+                        enemigos[2].pintarRectangulo(contexto);
+                        contexto.drawImage(shank, enemigos[2].x, enemigos[2].y, 100, 100);
+                        enemigos[2].x += 5;
+                        for (var i = paredes.length - 1; i >= 0; i--) {
+                            if (enemigos[2].seTocan(paredes[i])) {
+                                enemigos[2].x -= 800;
+                            }
+                        }
+
+                    }
+                    for (var i = enemigos.length - 1; i >= 0; i--) {
+                        enemigos[3].pintarRectangulo(contexto);
+                        contexto.drawImage(shank, enemigos[3].x, enemigos[3].y, 100, 100);
+                        enemigos[4].pintarRectangulo(contexto);
+                        contexto.drawImage(shank, enemigos[4].x, enemigos[4].y, 100, 100);
+                        enemigos[3].x += 5;
+                        enemigos[4].x += 5;
+                        for (var i = paredes.length - 1; i >= 0; i--) {
+                            if (enemigos[3].seTocan(paredes[i])) {
+                                enemigos[3].x -= 800;
+                            }
+                        }
+
+                        for (var i = paredes.length - 1; i >= 0; i--) {
+                            if (enemigos[4].seTocan(paredes[i])) {
+                                enemigos[4].x -= 800;
+                            }
+                        }
+
+                    }
+                    for (var i = enemigos.length - 1; i >= 0; i--) {
+                        enemigos[5].pintarRectangulo(contexto);
+                        contexto.drawImage(shank, enemigos[5].x, enemigos[5].y, 100, 100);
+                        enemigos[5].x += 5;
+                        for (var i = paredes.length - 1; i >= 0; i--) {
+                            if (enemigos[5].seTocan(paredes[i])) {
+                                enemigos[5].x -= 1050;
+                            }
+                        }
+
+                    }
+
+                    for (var i = enemigos.length - 1; i >= 0; i--) {
+                        enemigos[6].pintarRectangulo(contexto);
+                        contexto.drawImage(shank, enemigos[6].x, enemigos[6].y, 100, 100);
+                        enemigos[6].x += 5;
+
+                        for (var i = paredes.length - 1; i >= 0; i--) {
+                            if (enemigos[6].seTocan(paredes[i])) {
+                                enemigos[6].x -= 1700;
+                            }
+                        }
+                    }
+
+                    for (var i = puntos.length - 1; i >= 0; i--) {
+                        if (player.seTocan(puntos[i])) {
+                            sonido_engramaLeg.play();
+                            score += 10;
+                            puntos[i].x = 3000;
+                        }
+                    }
+
+                    for (var i = exoEng.length - 1; i >= 0; i--) {
+                        if (player.seTocan(exoEng[i])) {
+                            sonido_engramaExo.play();
+                            score += 100;
+                            exoEng[i].x = 3000;
+                        }
+                    }
+
+                    for (var i = enemigos.length - 1; i >= 0; i--) {
+                        if (player.seTocan(enemigos[i])) {
+                            shank_kill.play();
+                            score += 200;
+                            enemigos[i].x = 3000;
+                        }
+                    }
+                } else {
+                    contexto.fillStyle = "rgba(0, 0, 0, 0.025)";
+                    contexto.fillRect(0, 0, 2000, 3000);
+                    contexto.fillStyle = "white";
+                    contexto.font = "100px Arial"
+                    contexto.fillText("P A U S A", 790, 1300);
                 }
-                
 
 
-
-
-            } else {
+            } else {                
                 contexto.fillStyle = "rgba(0, 0, 0, 0.025)";
                 contexto.fillRect(0, 0, 2000, 3000);
                 contexto.fillStyle = "white";
                 contexto.font = "100px Arial"
-                contexto.fillText("P A U S A", 790, 1300);
+                contexto.fillText("G A M E  O V E R", 670, 1300);
             }
+
         }
+
 
         function random_rgba() {
             var o = Math.round, r = Math.random, s = 255;
@@ -208,9 +315,6 @@
                 };
         }());
         window.requestAnimationFrame(update);
-
-
-
         paredes.push(new rectangulo(1, 200, 1998, 50, "blue"));
         paredes.push(new rectangulo(1, 250, 50, 600, "blue"));
         paredes.push(new rectangulo(1948, 250, 50, 600, "blue"));
@@ -263,6 +367,18 @@
         paredes.push(new rectangulo(1185, 2350, 600, 50, "blue"));
         paredes.push(new rectangulo(550, 2100, 50, 250, "blue"));
         paredes.push(new rectangulo(1400, 2100, 50, 250, "blue"));
+        exoEng.push(new rectangulo(80, 1950, 80, 80, "black"));
+        exoEng.push(new rectangulo(1835, 1900, 80, 80, "black"));
+        exoEng.push(new rectangulo(1830, 675, 80, 80, "black"));
+        enemigos.push(new rectangulo(300, 250, 100, 100, "transparent"));
+        enemigos.push(new rectangulo(100, 2435, 100, 100, "transparent"));
+        enemigos.push(new rectangulo(1050, 250, 100, 100, "transparent"));
+        enemigos.push(new rectangulo(1050, 1650, 100, 100, "transparent"));
+        enemigos.push(new rectangulo(100, 1650, 100, 100, "transparent"));
+        enemigos.push(new rectangulo(500, 1930, 100, 100, "transparent"));
+        enemigos.push(new rectangulo(90, 450, 100, 100, "transparent"));
+
+
 
         posX = 100;
         for (var i = 0; i <= 22; i++) {
@@ -273,6 +389,121 @@
         posX = 90;
         for (var i = 0; i <= 10; i++) {
             puntos.push(new rectangulo(posX, 270, 50, 50, "black"));
+            posX += 80;
+        }
+
+        posX = 1050;
+        for (var i = 0; i <= 10; i++) {
+            puntos.push(new rectangulo(posX, 270, 50, 50, "black"));
+            posX += 80;
+        }
+
+        posY = 340
+        for (var i = 0; i <= 5; i++) {
+            puntos.push(new rectangulo(90, posY, 50, 50, "black"));
+            posY += 70;
+        }
+
+        posX = 170
+        for (var i = 0; i <= 2; i++) {
+            puntos.push(new rectangulo(posX, 690, 50, 50, "black"));
+            posX += 80;
+        }
+
+        posX = 170
+        for (var i = 0; i <= 2; i++) {
+            puntos.push(new rectangulo(posX, 480, 50, 50, "black"));
+            posX += 80;
+        }
+
+        posY = 340
+        for (var i = 0; i <= 27; i++) {
+            puntos.push(new rectangulo(450, posY, 50, 50, "black"));
+            posY += 70;
+        }
+
+        posY = 340
+        for (var i = 0; i <= 27; i++) {
+            puntos.push(new rectangulo(1500, posY, 50, 50, "black"));
+            posY += 70;
+        }
+
+        posX = 550
+        for (var i = 0; i <= 11; i++) {
+            puntos.push(new rectangulo(posX, 480, 50, 50, "black"));
+            posX += 80;
+        }
+
+        posX = 550
+        for (var i = 0; i <= 11; i++) {
+            puntos.push(new rectangulo(posX, 1950, 50, 50, "black"));
+            posX += 80;
+        }
+
+        posX = 1600
+        for (var i = 0; i <= 2; i++) {
+            puntos.push(new rectangulo(posX, 480, 50, 50, "black"));
+            posX += 80;
+        }
+
+        posX = 1590
+        for (var i = 0; i <= 2; i++) {
+            puntos.push(new rectangulo(posX, 690, 50, 50, "black"));
+            posX += 80;
+        }
+
+        posY = 340
+        for (var i = 0; i <= 4; i++) {
+            puntos.push(new rectangulo(1850, posY, 50, 50, "black"));
+            posY += 70;
+        }
+
+        posX = 1090
+        for (var i = 0; i <= 3; i++) {
+            puntos.push(new rectangulo(posX, 690, 50, 50, "black"));
+            posX += 80;
+        }
+
+        posX = 640
+        for (var i = 0; i <= 3; i++) {
+            puntos.push(new rectangulo(posX, 690, 50, 50, "black"));
+            posX += 80;
+        }
+
+        posX = 110
+        for (var i = 0; i <= 3; i++) {
+            puntos.push(new rectangulo(posX, 1670, 50, 50, "black"));
+            posX += 80;
+        }
+
+        posX = 540
+        for (var i = 0; i <= 4; i++) {
+            puntos.push(new rectangulo(posX, 1670, 50, 50, "black"));
+            posX += 80;
+        }
+
+        posX = 1090
+        for (var i = 0; i <= 4; i++) {
+            puntos.push(new rectangulo(posX, 1670, 50, 50, "black"));
+            posX += 80;
+        }
+
+
+        posX = 1600
+        for (var i = 0; i <= 3; i++) {
+            puntos.push(new rectangulo(posX, 1670, 50, 50, "black"));
+            posX += 80;
+        }
+
+        posX = 110
+        for (var i = 0; i <= 3; i++) {
+            puntos.push(new rectangulo(posX, 2230, 50, 50, "black"));
+            posX += 80;
+        }
+
+        posX = 1600
+        for (var i = 0; i <= 3; i++) {
+            puntos.push(new rectangulo(posX, 2230, 50, 50, "black"));
             posX += 80;
         }
 
