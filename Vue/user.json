@@ -1,0 +1,18 @@
+[
+    {
+        "name":"Fabian",
+        "lastname":"Ramirez",
+        "email":"fabianramirez2810@gmail.com",
+        "password":"123456",
+        "rol_id":1,
+        "avatar":""
+    },
+    {
+        "name":"Marina",
+        "lastname":"Beltran",
+        "email":"marina123@gmail.com",
+        "password":"1234",
+        "rol_id":2,
+        "avatar":""
+    }
+]
