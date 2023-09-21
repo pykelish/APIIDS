@@ -9,6 +9,28 @@
         body {
             background-color: rgb(221, 161, 133);
         }
+
+        table.customTable {
+            width: 100%;
+            background-color: #FFFFFF;
+            border-collapse: collapse;
+            border-width: 2px;
+            border-color: #ff5100;
+            border-style: solid;
+            color: #000000;
+        }
+
+        table.customTable td,
+        table.customTable th {
+            border-width: 2px;
+            border-color: #000000;
+            border-style: solid;
+            padding: 5px;
+        }
+
+        table.customTable thead {
+            background-color: #ff5100;
+        }
     </style>
 </head>
 
@@ -36,13 +58,7 @@
 
         <h3>Resultado: <span v-if="result!=0"> {{ result }}</span> </h3><br> -->
 
-        <form>
-            <!-- <hr>
-            <li v-for="item in persons">
-                {{item.nombre}} - {{item.Apellido}}
-            </li> -->
-
-            </hr>
+        <form v-if="!is_Login">
 
             <fieldset>
                 <legend>
@@ -52,13 +68,35 @@
                 <legend>
                     Contraseña
                 </legend>
-                <input type="text" v-model="password" name="">
+                <input type="password" v-model="password" name="">
                 <br>
             </fieldset>
             <br>
             <button type="button" @click="login">Anexarme</button>
 
         </form>
+
+        <table class="customTable" v-if="is_Login">
+
+
+            <thead>
+                <tr>
+                    <th>Datos personales</th>
+                    <th>Correo</th>
+                    <th>Telefono</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="u in user_r">
+                    <td> {{u.name}} {{u.lastname}} </td>
+                    <td> {{u.email}} </td>
+                    <td> {{u.phone}} </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- Generated at CSSPortal.com -->
+
+
     </div>
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -67,33 +105,64 @@
 
         createApp({
             setup() {
-                
+
                 const users = ref([]);
-                const email = ref("");
-                const password = ref("");
+                const email = ref("fabianramirez2810@gmail.com");
+                const password = ref("123456");
+
+                let temp = localStorage.getItem("is_Login");
+                if(temp == null){
+                    temp = false;
+                }
+                is_Login = ref(temp);
 
                 return {
                     users,
                     email,
-                    password
+                    password,
+                    is_Login
                 }
             },
+            mounted: function(){
+                const getUsers = async () => {
+                    const response = await fetch("user.json");
+                    const tmp_users = await response.json();
+                    this.user_r = tmp_users;
+                }
+                if(this.is_Login){
+                    getUsers();
+                }
+
+            },
             methods: {
-                async login(){
-                    const response = await fetch("http://127.0.0.1:5500/user.json");
-                    const user_r = await response.json();
-                    let login = false;
-                    user_r.forEach(element => {
-                        if(this.email == element.email){
-                            if(this.password == element.password){
-                                alert("Buenas buenas ")
-                                login = true;
+                async login() {
+
+                    const response = await fetch("user.json");
+                    this.user_r = await response.json();
+                    this.is_Login = false;
+
+                    this.user_r.forEach(element => {
+                        if (this.email == element.email) {
+                            if (this.password == element.password) {
+                                this.is_Login = true;
+                                alert("Buenas buenas ");
+
+                                localStorage.setItem("user_data", JSON.stringify(element));
+                                localStorage.setItem("is_login", "true");
+                                
                             }
                         }
-                        
-                    });
 
+                    });
+                    if (!this.is_Login) {
+                        alert("Verifique su informacion");
+                    }
+                    
+                },
+                update(user_r){
+                    this.user_r = user_r;
                 }
+
             }
         }).mount('#container')
     </script>
