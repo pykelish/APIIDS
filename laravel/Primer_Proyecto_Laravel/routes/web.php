@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CarrosController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,11 +18,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/user', [UserController::class, 'index']);
+Route::get('/user', [UserController::class, 'index'])->where(['name' => '[a-z]+']);
 
 Route::get('/example/{name?}', function ($name = "Fabian") {
     return view('example',[ 'name' => $name]);
-});
+})->where(['nombre' => '[a-z]+', 'lastname' => '[a-z]+']);
 
 Route::get('/saludo/{nombre}/{lastname?}', function ($nombre, $lastname=null) {
     return 'Hola ' . $nombre . ' ' . $lastname;
@@ -43,4 +44,4 @@ Route::get('/division/{num1}/{num2}', function ($num1, $num2) {
     return 'Resultado de la division es: ' . $num1 / $num2;
 })->where(['num1' => '[0-9]+', 'num2' => '[0-9]+']);
 
-
+Route::get('/carruns', [CarrosController::class, 'getCarros']);
