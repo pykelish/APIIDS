@@ -11,4 +11,13 @@ class CarrosController extends Controller
         $carruns = Carrun::all();
         return response()->json($carruns);
     }
+
+    public function getId_Carros($id)
+    {
+        $carruns_id = Carrun::find($id);
+        if (!$carruns_id) {
+            return response()->json(['message' => 'No ta el carrito'], 404);
+        }
+        return response()->json($carruns_id);
+    }
 }

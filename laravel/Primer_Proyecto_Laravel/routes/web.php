@@ -45,3 +45,4 @@ Route::get('/division/{num1}/{num2}', function ($num1, $num2) {
 })->where(['num1' => '[0-9]+', 'num2' => '[0-9]+']);
 
 Route::get('/carruns', [CarrosController::class, 'getCarros']);
+Route::get('/carruns/{id}', [CarrosController::class, 'getId_Carros']);
